@@ -1,1 +1,2 @@
 # eSportsStats
+Scrapes content from fortnitetracker.com leaderboards and displays live event qualification threshold, top scores, point system, and various statistics for top competitors. Players can use this tool to keep track of the live qualification threshold and change their styles of play or strategies based on the stats of the top teams as well as the format of the events. Event statistics can be used to form a database that not just players, but eSports fans, analysts, and broadcasters can use to discover interesting insights through game data. 
