@@ -8,7 +8,6 @@ import bs4
 import matplotlib.pyplot as plt
 
 def eventData(url):
-    url = "https://fortnitetracker.com/events/epicgames_S21_PgodCup_NAW?window=S21_PgodCup_NAW_Round1"
     data = requests.get(url).text
     soup = bs4.BeautifulSoup(data, 'html.parser')
     stats = soup.find_all('script')[51].text.split('"entries": [')[1]
@@ -53,4 +52,12 @@ def eventData(url):
     df['elimPtsProportion'] = df['elimPoints']/df['points']
     df['placementPtsProportion'] = df['placementPoints']/df['points']
     df['winrate'] = df['wins']/df['matches']
+    return df
+
+def getEventData(url, pages):
+    df = eventData(url)
+    for i in range(pages - 1):
+        page_url = 'https://fortnitetracker.com/events/epicgames_S21_PgodCup_NAW?window=S21_PgodCup_NAW_Round1&page={}'.format(i+1)
+        page_df = eventData(page_url)
+        df = pd.concat([df, page_df], ignore_index = True)
     return df
