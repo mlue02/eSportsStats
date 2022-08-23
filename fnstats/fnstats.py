@@ -54,10 +54,11 @@ def eventData(url):
     df['winrate'] = df['wins']/df['matches']
     return df
 
+
 def getEventData(url, pages):
     df = eventData(url)
     for i in range(pages - 1):
-        page_url = 'https://fortnitetracker.com/events/epicgames_S21_PgodCup_NAW?window=S21_PgodCup_NAW_Round1&page={}'.format(i+1)
+        page_url = url + '&page={}'.format(i+1)
         page_df = eventData(page_url)
         df = pd.concat([df, page_df], ignore_index = True)
     return df
